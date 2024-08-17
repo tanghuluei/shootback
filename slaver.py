@@ -35,9 +35,9 @@ class Slaver(object):
             log.warning('ssl module is NOT valid in this machine! Fallback to plain')
             return None
 
-        ctx = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
+        ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
         ctx.check_hostname = False
-        ctx.load_default_certs(ssl.Purpose.CLIENT_AUTH)
+        #ctx.load_default_certs(ssl.Purpose.CLIENT_AUTH)
         ctx.verify_mode = ssl.CERT_NONE
 
         return ctx
