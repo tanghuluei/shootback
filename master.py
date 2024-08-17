@@ -157,9 +157,10 @@ class Master(object):
             log.warning('ssl module is NOT valid in this machine! Fallback to plain')
             return None
 
-        ctx = ssl.create_default_context(ssl.Purpose.SERVER_AUTH)
+        ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)  #我更正的
+        #ctx = ssl.create_default_context(ssl.Purpose.SERVER_AUTH)
         ctx.check_hostname = False
-        ctx.load_default_certs(ssl.Purpose.SERVER_AUTH)
+        #ctx.load_default_certs(ssl.Purpose.SERVER_AUTH)
         ctx.verify_mode = ssl.CERT_NONE
 
         _certfile = tempfile.mktemp()
